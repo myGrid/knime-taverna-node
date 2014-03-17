@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Taverna-Node extension for KNIME Workbench
 Bundle-SymbolicName: uk.org.taverna.knime; singleton:=true
-Bundle-Version: 1.0.0
+Bundle-Version: 0.0.1
 Bundle-ClassPath: taverna.jar,
  scufl2-api-0.13.1.jar,
  scufl2-t2flow-0.13.1.jar,
