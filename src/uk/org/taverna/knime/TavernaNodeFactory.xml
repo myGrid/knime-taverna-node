@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<knimeNode icon="./taverna.png" type="Other" xmlns="http://knime.org/node/v2.8" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://knime.org/node/v2.8 http://knime.org/node/v2.8.xsd">
+    <name>Taverna</name>
+    
+    <shortDescription>
+        Execute Taverna workflow
+    </shortDescription>
+    
+    <fullDescription>
+        <intro>Execute a  <a href="http://www.taverna.org.uk/">Taverna</a> workflow. 
+        <p>Note that the
+        Taverna <a href="http://www.taverna.org.uk/download/command-line-tool/">Commandline</a> Tool 
+        <tt>executeworkflow</tt> must be separately installed and made available on the operating system's PATH; 
+        alternatively the full path to <tt>executeworkflow</tt> must be configured on each Taverna node.
+        </p>
+        <p>
+        Taverna workflows can be found on the <a href="http://www.myexperiment.org/workflows?filter=TYPE_ID%28%222%22%29">myExperiment</a>
+        website, or created using the <a href="http://www.taverna.org.uk/download/workbench/">Taverna Workbench</a>.        
+        </p>
+        <p>
+        Most Taverna workflows will output multiple ports, each with a lists of values or list of lists of values.         
+        This KNIME node has a single output port, where each Taverna output port corresponds to a single column.                      
+        These lists are not necessarily of the same length, any the shorter columns will be padded with missing values.
+        Required Taverna workflow inputs are selected from the table input to the node - 
+        see the <b>View: Column names</b> for a list of ports of the configured workflow. 
+        </p>
+        </intro>
+        
+        
+        <option name="Taverna Workflow">File path or URL to Taverna workflow definition (.t2flow file)
+        <p>
+	        If using an URL from <a href="http://www.myexperiment.org/">myExperiment</a>, 
+	        copy the <i>Run this Workflow in the Taverna Workbench</i> 
+	        URL rather than the URL for the workflow page. 
+        </p>
+        
+        </option>
+        <option name="Timeout (seconds)">Maximum execution time in seconds, or 0 for no limit</option>
+        <option name="executeworkflow binary">Path to installed Taverna CommandLine tool binary, 
+        e.g. <tt>executeworkflow</tt> (from PATH) or <tt>/opt/taverna-commandline-core/executeworkflow</tt></option>
+
+    </fullDescription>
+    
+    <ports>
+        <inPort index="0" name="inputs">Taverna inputs. The required Taverna input port are selected from the corresponding columns. Ports
+        	expecting a single value will only select from the first row, ports expecting multiple values will consume 
+        	all rows for their corresponding columns. Any missing values are replaced with empty strings.</inPort>
+        <!-- possibly more input ports here-->
+        <outPort index="0" name="outputs">Taverna outputs. Each Taverna output port is represented as a column. Ports outputting a single
+        	value will only have values in the first row. Note that columns might be padded with missing values as some Taverna ports
+        	might have more output values than others.</outPort>
+        <!-- possibly more output ports here-->
+    </ports>    
+    <views>
+        <view index="0" name="Workflow columns">Show expected input and output columns</view>
+        <!--view index="1" name="name of second view">Description of second view...</view-->
+    </views>
+</knimeNode>
